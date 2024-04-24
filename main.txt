@@ -1,0 +1,107 @@
+Étape 1 : Identifier les Entités
+D'après la description que vous avez fournie, les entités principales impliquées dans ce système sont :
+
+Gymnase - Représente chaque localisation individuelle de gymnase.
+Membre - Une personne inscrite dans un gymnase.
+Session - Une séance d'entraînement à laquelle les membres peuvent s'inscrire.
+Coach - Un entraîneur qui dirige les sessions.
+
+Étape 2 : Définir les Attributs de chaque Entité
+Chaque entité aura des attributs spécifiques :
+
+Gymnase
+Nom (clé primaire)
+Adresse
+Numéro de téléphone
+
+Membre
+Identifiant unique (clé primaire)
+Nom
+Prénom
+Adresse
+Date de naissance
+Genre
+
+Session
+Identifiant de session (clé primaire)
+Type de sport
+Horaire
+Capacité maximale (20 membres)
+Gymnase (clé étrangère liée à Gymnase)
+
+
+Coach
+Identifiant de coach (clé primaire)
+Nom
+Prénom
+Âge
+Spécialité
+
+
+Étape 3 : Définir les Relations
+
+Les relations entre ces entités permettent de modéliser les interactions dans le système :
+
+Gymnase à Membre
+Un gymnase peut avoir plusieurs membres.
+Un membre s'inscrit à un gymnase.
+
+Session à Membre
+Une session peut accueillir plusieurs membres (jusqu'à 20).
+Un membre peut s'inscrire à plusieurs sessions.
+
+Gymnase à Session
+Un gymnase peut offrir plusieurs sessions.
+Une session se tient dans un seul gymnase.
+
+Session à Coach
+Une session peut être dirigée par jusqu'à deux coaches.
+Un coach peut diriger plusieurs sessions.
+
+Coach à Gymnase (optionnel)
+Un coach peut être associé à plusieurs gymnases (s'il y a des sessions qu'il dirige dans différents lieux).
+
+Gymnase : Cette entité représente les différents gymnases. Chaque gymnase a un nom, une adresse et un numéro de téléphone. 
+Les membres s’inscrivent dans un gymnase spécifique.
+
+Membre : Les membres du gymnase ont un identifiant unique, un nom de famille, un prénom, une adresse, une date de naissance et un genre. 
+Ils s’inscrivent dans un gymnase et assistent à des séances.
+
+Séance : Les séances sont caractérisées par un type de sport, un horaire et une capacité maximale (jusqu’à 20 membres). 
+Elles ont lieu dans un gymnase spécifique et sont dirigées par des entraîneurs.
+
+Entraîneur : Les entraîneurs ont un nom de famille, un prénom, un âge et une spécialité. Ils dirigent les séances.
+
+  +------------------------+          +------------------------+
+  |       Gymnasium        |          |        Session         |
+  +------------------------+          +------------------------+
+  | gym_id (PK)            |<-------->| session_id (PK)        |
+  | name                   |          | sport                  |
+  | address                |          | schedule               |
+  | phone_number           |          | max_capacity           |
+  +------------------------+          +------------------------+
+          | 1          N                    | 1          N
+          |                                 |
+          |                                 |
+          V                                 V
++------------------------+       +------------------------+
+|         Member         |       |        Coach           |
++------------------------+       +------------------------+
+| member_id (PK)         |       | coach_id (PK)          |
+| last_name              |       | last_name              |
+| first_name             |       | first_name             |
+| address                |       | age                    |
+| date_of_birth          |       | specialty              |
+| gender                 |       +------------------------+
+| gym_id (FK)            |
++------------------------+
+          | 1          N
+          |
+          |
+          V
+  +------------------------+
+  |      Registration      |
+  +------------------------+
+  | member_id (PK, FK)     |
+  | session_id (PK, FK)    |
+  +------------------------+
