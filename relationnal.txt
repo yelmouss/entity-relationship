@@ -1,0 +1,49 @@
+Entité “Hôtel” :
+Attributs :
+ID_Hotel (clé primaire)
+Nom_Hotel
+Adresse_Hotel
+Étoiles_Hotel
+ID_Type_Hotel (clé étrangère)
+Relations :
+One-to-many avec l’entité “Chambre” : Un hôtel peut contenir plusieurs chambres, mais une chambre est associée à un seul hôtel.
+One-to-many avec l’entité “Employé” : Un hôtel peut employer plusieurs employés, mais un employé travaille dans un seul hôtel.
+Many-to-one avec l’entité “Type d’hôtel” : Plusieurs hôtels peuvent appartenir à un même type d’hôtel, mais chaque hôtel est associé à un seul type.
+
+
+Entité “Type d’hôtel” :
+Attributs :
+ID_Type_Hotel (clé primaire)
+Nom_Type_Hotel
+Description_Type_Hotel
+Relations :
+One-to-many avec l’entité “Hôtel” : Un type d’hôtel peut correspondre à plusieurs hôtels, mais chaque hôtel est relié à un seul type d’hôtel.
+
+
+Entité “Chambre” :
+Attributs :
+ID_Chambre (clé primaire)
+Numéro_Chambre
+ID_Hotel (clé étrangère)
+ID_Catégorie (clé étrangère)
+Relations :
+Many-to-one avec l’entité “Hôtel” : Plusieurs chambres sont associées à un même hôtel.
+Many-to-one avec l’entité “Catégorie” : Plusieurs chambres peuvent appartenir à une même catégorie, mais chaque chambre est associée à une seule catégorie.
+
+Entité “Catégorie” :
+Attributs :
+ID_Catégorie (clé primaire)
+Nom_Catégorie
+Relations :
+One-to-many avec l’entité “Chambre” : Une catégorie peut inclure plusieurs chambres, mais chaque chambre est classifiée dans une seule catégorie.
+
+
+Entité “Employé” :
+Attributs :
+ID_Employé (clé primaire)
+Nom_Employé
+Prénom_Employé
+ID_Hotel (clé étrangère)
+Relations :
+Many-to-one avec l’entité “Hôtel” : Plusieurs employés peuvent travailler pour un même hôtel, mais chaque employé est relié à un seul hôtel.
+Ces relations indiquent comment les données sont interconnectées et comment les actions ou modifications sur une entité peuvent affecter les autres entités reliées dans la base de données.
